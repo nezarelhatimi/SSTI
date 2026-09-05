@@ -53,9 +53,9 @@ class ProductForm
                     ->multiple()
                     ->reorderable()
                     ->directory('products')
-                    ->imageResizeMode('cover')
-                    ->imageCropAspectRatio('16:9')
                     ->maxFiles(10)
+                    ->maxSize(5120)
+                    ->imagePreviewHeight('150')
                     ->columnSpanFull(),
 
             ])->columns(2),
