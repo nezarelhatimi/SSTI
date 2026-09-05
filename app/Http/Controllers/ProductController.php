@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -10,6 +9,12 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
+        $request->validate([
+            'category_id' => 'nullable|integer|exists:categories,id',
+            'search'      => 'nullable|string|max:100',
+            'featured'    => 'nullable|boolean',
+        ]);
+
         $products = Product::with(['category', 'specs'])
             ->where('is_active', true)
             ->when($request->category_id, fn($q) =>
