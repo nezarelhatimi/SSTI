@@ -75,6 +75,7 @@ const t = {
       specs: 'Technical Specifications',
       quoteBtn: 'Request a Quote',
       callBtn: 'Call',
+      view: 'View Details',
       trust: ['Professional grade', 'Expert support', 'Local delivery'],
       recommended: 'Recommended',
       compatible: 'Compatible Accessories',
@@ -110,6 +111,8 @@ const t = {
       namePlaceholder: '',
       emailPlaceholder: '',
       phonePlaceholder: '',
+      ctaCall: 'Call Now',
+      ctaEmail: 'Send Email',
     },
   },
 
@@ -187,6 +190,7 @@ const t = {
       specs: 'Spécifications Techniques',
       quoteBtn: 'Demander un Devis',
       callBtn: 'Appeler',
+      view: 'Voir les Détails',
       trust: ['Qualité professionnelle', 'Support expert', 'Livraison locale'],
       recommended: 'Recommandé',
       compatible: 'Accessoires Compatibles',
@@ -222,13 +226,8 @@ const t = {
       namePlaceholder: '',
       emailPlaceholder: '',
       phonePlaceholder: '',
-      // EN contact
-ctaCall: 'Call Now',
-ctaEmail: 'Send Email',
-
-// FR contact
-ctaCall: 'Appeler',
-ctaEmail: 'Écrire',
+      ctaCall: 'Appeler',
+      ctaEmail: 'Écrire',
     },
   },
 }
