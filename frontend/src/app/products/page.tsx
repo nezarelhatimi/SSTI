@@ -1,12 +1,12 @@
 'use client'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { useLang } from '@/context/LanguageContext'
 import { useTranslations } from '@/lib/translations'
 import { productName } from '@/lib/product'
 
-export default function ProductsPage() {
+function ProductsContent() {
   const { lang, isRTL } = useLang()
   const tr = useTranslations(lang)
   const p = tr.products
@@ -102,7 +102,6 @@ export default function ProductsPage() {
                   const thumb = prod.image_urls?.[0]
                   return (
                     <Link key={prod.id} href={`/products/${prod.slug}`} style={{ textDecoration: 'none', display: 'block', backgroundColor: '#F2F4F6' }}>
-                      {/* Image */}
                       <div style={{ height: '200px', overflow: 'hidden', borderLeft: isRTL ? 'none' : '3px solid #C84B31', borderRight: isRTL ? '3px solid #C84B31' : 'none', position: 'relative', backgroundColor: '#E5E7EB' }}>
                         {thumb ? (
                           <img src={thumb} alt={productName(prod, lang)} style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block', transition: 'transform 0.3s ease', backgroundColor: 'white', padding: '12px' }}
@@ -143,5 +142,17 @@ export default function ProductsPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={
+      <div style={{ padding: '80px 0', textAlign: 'center' }}>
+        <p style={{ fontFamily: 'DM Mono,monospace', fontSize: '12px', color: '#9CA3AF' }}>Loading...</p>
+      </div>
+    }>
+      <ProductsContent />
+    </Suspense>
   )
 }
