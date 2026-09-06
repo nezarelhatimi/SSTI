@@ -1,4 +1,4 @@
-const BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'
+const BASE = 'https://api.ssti.space/api'
 
 export async function getProducts(params?: Record<string, string>) {
   const query = params ? '?' + new URLSearchParams(params).toString() : ''
