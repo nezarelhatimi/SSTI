@@ -18,12 +18,12 @@ export default function HomePage() {
   const intervalRef = useRef<any>(null)
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/categories').then(r => r.json()).then(setCategories).catch(() => {})
+    fetch('https://api.ssti.space/api/categories').then(r => r.json()).then(setCategories).catch(() => {})
     
   }, [])
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/products?per_page=100')
+    fetch('https://api.ssti.space/api/products?per_page=100')
       .then(r => r.json())
       .then(data => setSlides(data.data ?? []))
       .catch(() => {})

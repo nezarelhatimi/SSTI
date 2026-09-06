@@ -20,7 +20,7 @@ export default function ContactPage() {
     e.preventDefault()
     setStatus('loading')
     try {
-      const res = await fetch('http://localhost:8000/api/contact', {
+      const res = await fetch('https://api.ssti.space/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify(form),

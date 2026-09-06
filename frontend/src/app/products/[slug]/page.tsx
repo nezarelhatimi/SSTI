@@ -19,7 +19,7 @@ export default function ProductDetailPage() {
 
   useEffect(() => {
     if (!slug) return
-    fetch(`http://localhost:8000/api/products/${slug}`)
+    fetch(`https://api.ssti.space/api/products/${slug}`)
       .then(r => r.json())
       .then(r => { setProduct(r.product); setRelated(r.related ?? []) })
       .catch(() => {})

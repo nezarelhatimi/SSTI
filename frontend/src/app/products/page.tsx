@@ -20,7 +20,7 @@ function ProductsContent() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/categories').then(r => r.json()).then(setCategories).catch(() => {})
+    fetch('https://api.ssti.space/api/categories').then(r => r.json()).then(setCategories).catch(() => {})
   }, [])
 
   useEffect(() => {
@@ -28,7 +28,7 @@ function ProductsContent() {
     const params = new URLSearchParams()
     if (categoryId) params.set('category_id', categoryId)
     if (search) params.set('search', search)
-    fetch(`http://localhost:8000/api/products?${params}`)
+    fetch(`https://api.ssti.space/api/products?${params}`)
       .then(r => r.json())
       .then(r => { setProducts(r.data ?? []); setTotal(r.total ?? 0) })
       .catch(() => {})

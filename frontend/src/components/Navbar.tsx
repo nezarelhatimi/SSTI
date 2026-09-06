@@ -23,7 +23,7 @@ export default function Navbar() {
   const dropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/categories')
+    fetch('https://api.ssti.space/api/categories')
       .then(r => r.json())
       .then(setCategories)
       .catch(() => {})
