@@ -58,7 +58,6 @@ export default function HomePage() {
         onMouseLeave={() => setPaused(false)}
       >
         
-        {/* Change 1: added className="slide-grid" */}
         <div className="slide-grid" style={{ maxWidth: '1280px', margin: '0 auto', padding: '56px 32px', width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px', alignItems: 'center' }}>
           <div>
             {slide ? (
@@ -73,7 +72,7 @@ export default function HomePage() {
                   <p style={{ fontFamily: 'DM Mono,monospace', fontSize: '12px', color: '#6B7280', marginBottom: '12px' }}>REF: {slide.model_number}</p>
                 )}
                 {slide.specs?.length > 0 && (
-                  <div style={{ borderLeft: '2px solid #C84B31', paddingLeft: '14px', marginBottom: '28px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  <div className="hero-spec-row" style={{ borderLeft: '2px solid #C84B31', paddingLeft: '14px', marginBottom: '28px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
                     {slide.specs.slice(0, 3).map((s: any) => (
                       <div key={s.id} style={{ display: 'flex', gap: '10px' }}>
                         <span style={{ fontFamily: 'DM Mono,monospace', fontSize: '11px', color: '#6B7280' }}>{s.label}</span>
@@ -82,7 +81,7 @@ export default function HomePage() {
                     ))}
                   </div>
                 )}
-                <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                <div className="hero-cta-row" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                   <Link href={`/products/${slide.slug}`} style={{ backgroundColor: '#C84B31', color: 'white', padding: '12px 28px', fontFamily: 'DM Sans,sans-serif', fontWeight: 600, fontSize: '13px', textDecoration: 'none', textTransform: 'uppercase' }}>
                     {h.learnMore} →
                   </Link>
@@ -97,7 +96,7 @@ export default function HomePage() {
                 <h1 style={{ fontFamily: 'Barlow Condensed,sans-serif', fontWeight: 700, fontSize: 'clamp(36px,5vw,64px)', color: 'white', textTransform: 'uppercase', lineHeight: 1, marginBottom: '28px' }}>
                   {h.h1[0]}<br /><span style={{ color: '#C84B31' }}>{h.h1[1]}</span><br />{h.h1[2]}
                 </h1>
-                <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                <div className="hero-cta-row" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                   <Link href="/products" style={{ backgroundColor: '#C84B31', color: 'white', padding: '12px 28px', fontFamily: 'DM Sans,sans-serif', fontWeight: 600, fontSize: '14px', textDecoration: 'none', textTransform: 'uppercase' }}>{h.browseBtn}</Link>
                   <Link href="/contact" style={{ border: '1px solid rgba(255,255,255,0.15)', color: '#9CA3AF', padding: '12px 28px', fontFamily: 'DM Sans,sans-serif', fontWeight: 500, fontSize: '14px', textDecoration: 'none', textTransform: 'uppercase' }}>{h.quoteBtn}</Link>
                 </div>
@@ -105,7 +104,6 @@ export default function HomePage() {
             )}
           </div>
 
-          {/* Change 2: added className="slide-image" */}
           {slide && (
             <div className="slide-image" key={`img-${current}`} style={{ animation: 'fadeSlide 0.5s ease' }}>
               {slide.image_urls?.[0] ? (
@@ -123,7 +121,6 @@ export default function HomePage() {
 
         {slides.length > 1 && (
           <>
-            {/* Change 4: added className="hero-nav-btn prev" and className="hero-nav-btn next" */}
             <button className="hero-nav-btn prev" onClick={prev} style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.1)', color: 'white', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
               <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
             </button>
@@ -149,7 +146,7 @@ export default function HomePage() {
 
       
       {/* CATEGORIES — full bleed image cards */}
-      <section style={{ backgroundColor: 'white', padding: '80px 0' }}>
+      <section style={{ backgroundColor: 'white', padding: '80px 0', overflow: 'hidden' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 32px' }}>
           <p style={{ fontFamily: 'DM Mono,monospace', fontSize: '11px', color: '#C84B31', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '10px' }}>{h.catTag}</p>
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '32px', flexWrap: 'wrap', gap: '12px' }}>
@@ -160,7 +157,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 32px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))', gap: '3px' }}>
+        <div className="cat-grid" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 32px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '3px' }}>
           {(categories.length > 0 ? categories : [
             { id: 1, name: 'Electric Compressors', products_count: '—', image_url: null },
             { id: 2, name: 'Refrigerant Dryer', products_count: '—', image_url: null },
@@ -209,16 +206,16 @@ export default function HomePage() {
       
 
       {/* WHY US */}
-<section style={{ backgroundColor: 'white', padding: '80px 0' }}>
+<section style={{ backgroundColor: 'white', padding: '80px 0', overflow: 'hidden' }}>
   <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 32px' }}>
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '64px', alignItems: 'start' }}>
 
       {/* Left */}
       <div>
-        <p style={{ fontFamily: 'DM Mono,monospace', fontSize: '26px', color: '#C84B31', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '18px' }}>{h.whyTag}</p>
+        <p style={{ fontFamily: 'DM Mono,monospace', fontSize: '13px', color: '#C84B31', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '18px' }}>{h.whyTag}</p>
         <h2 style={{ fontFamily: 'Barlow Condensed,sans-serif', fontWeight: 700, fontSize: '35px', color: '#1C2B3A', textTransform: 'uppercase', marginBottom: '20px', lineHeight: 1 }}>{h.whyTitle}</h2>
         <p style={{ fontFamily: 'DM Sans,sans-serif', fontSize: '17px', color: '#6B7280', lineHeight: 1.75, marginBottom: '32px' }}>{h.whySub}</p>
-        <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', backgroundColor: '#1C2B3A', color: 'white', padding: '13px 26px', fontFamily: 'DM Sans,sans-serif', fontSize: '25px', fontWeight: 600, textDecoration: 'none', textTransform: 'uppercase' }}>
+        <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', backgroundColor: '#1C2B3A', color: 'white', padding: '13px 26px', fontFamily: 'DM Sans,sans-serif', fontSize: '14px', fontWeight: 600, textDecoration: 'none', textTransform: 'uppercase' }}>
           {h.quoteBtn}
           <svg width="13" height="13" fill="none" stroke="white" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </Link>
@@ -250,7 +247,7 @@ export default function HomePage() {
 </section>
 
       {/* CTA BANNER */}
-      <section style={{ backgroundColor: '#C84B31' }}>
+      <section style={{ backgroundColor: '#C84B31', overflow: 'hidden' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '28px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '20px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
             <div style={{ width: '2px', height: '40px', backgroundColor: 'rgba(255,255,255,0.3)', flexShrink: 0 }} />
@@ -266,7 +263,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Change 3: expanded media query block */}
       <style>{`
         @keyframes fadeSlide {
           from { opacity: 0; transform: translateY(10px); }
@@ -274,6 +270,11 @@ export default function HomePage() {
         }
         .cat-card:hover .cat-img { transform: scale(1.05); }
         .prod-card:hover { transform: translateY(-2px); }
+
+        html, body {
+          overflow-x: hidden;
+          max-width: 100%;
+        }
 
         @media (max-width: 768px) {
   .slide-grid {
@@ -316,6 +317,15 @@ export default function HomePage() {
   }
   .slide-grid .hero-spec-row {
     align-items: center !important;
+  }
+
+  .cat-grid {
+    grid-template-columns: 1fr !important;
+    padding: 0 20px !important;
+    gap: 12px !important;
+  }
+  .cat-card {
+    height: 280px !important;
   }
 }
       `}</style>
