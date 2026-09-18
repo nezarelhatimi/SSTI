@@ -257,7 +257,7 @@ export default function HomePage() {
             </div>
           </div>
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-            <a href="tel:+212600000000" style={{ backgroundColor: 'white', color: '#C84B31', padding: '9px 22px', fontFamily: 'DM Sans,sans-serif', fontSize: '12px', fontWeight: 700, textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.07em' }}>{h.ctaCall}</a>
+            <a href="tel:+212660593958" style={{ backgroundColor: 'white', color: '#C84B31', padding: '9px 22px', fontFamily: 'DM Sans,sans-serif', fontSize: '12px', fontWeight: 700, textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.07em' }}>{h.ctaCall}</a>
             <Link href="/contact" style={{ border: '1px solid rgba(255,255,255,0.4)', color: 'white', padding: '9px 22px', fontFamily: 'DM Sans,sans-serif', fontSize: '12px', fontWeight: 600, textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.07em' }}>{h.ctaMsg}</Link>
           </div>
         </div>
