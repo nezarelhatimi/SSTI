@@ -3,15 +3,19 @@ export const categories = [
     id: 1,
     name: 'Electric Compressors',
     name_fr: 'Compresseurs Électriques',
-    image_url: null,
-    products_count: 13,  // ids 2,3,4,5,6,7,9,10,11,12,13,14 + GA30+ = 13
+    image_url: '/images/products/kaeser-asd57t-1.jpg',
+    get products_count() {
+      return products.filter(p => p.category_id === this.id).length
+    },
   },
   {
     id: 2,
     name: 'Refrigerant Dryer',
     name_fr: 'Sécheur Frigorifique',
-    image_url: null,
-    products_count: 6,  // PS Series + 5 new flow rate dryers
+    image_url: '/images/products/power-system-ps13ii-1.jpg',
+    get products_count() {
+      return products.filter(p => p.category_id === this.id).length
+    },
   },
 ]
 
@@ -47,7 +51,7 @@ export const products = [
     category: { id: 1, name: 'Electric Compressors', name_fr: 'Compresseurs Électriques' },
     description: 'Italian-made oil-injected rotary screw air compressor, 18.5 kW (25 HP), 10 bar.',
     description_fr: "Compresseur à vis fabriqué en Italie, 18,5 kW (25 CV), 10 bar.",
-    image_urls: [],
+    image_urls: ['/images/products/fini-rotar-2510-1.jpg'],
     specs: [
       { id: 1, label: 'Power', value: '18.5 kW (25 HP)' },
       { id: 2, label: 'Max Pressure', value: '10 bar' },
