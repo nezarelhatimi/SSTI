@@ -1,30 +1,22 @@
-const BASE = 'https://api.ssti.space/api'
+import { categories, getProductsByCategory, getProductBySlug } from './data'
 
 export async function getProducts(params?: Record<string, string>) {
-  const query = params ? '?' + new URLSearchParams(params).toString() : ''
-  const res = await fetch(`${BASE}/products${query}`, { cache: 'no-store' })
-  if (!res.ok) throw new Error('Failed to fetch products')
-  return res.json()
+  return getProductsByCategory(params?.category_id, params?.search)
 }
 
 export async function getProduct(slug: string) {
-  const res = await fetch(`${BASE}/products/${slug}`, { cache: 'no-store' })
-  if (!res.ok) throw new Error('Failed to fetch product')
-  return res.json()
+  return getProductBySlug(slug)
 }
 
 export async function getCategories() {
-  const res = await fetch(`${BASE}/categories`, { cache: 'no-store' })
-  if (!res.ok) throw new Error('Failed to fetch categories')
-  return res.json()
+  return categories
 }
 
 export async function sendContact(data: Record<string, string>) {
-  const res = await fetch(`${BASE}/contact`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify(data),
-  })
-  if (!res.ok) throw new Error('Failed to send message')
-  return res.json()
+  const subject = encodeURIComponent(data.subject || 'Enquiry from website')
+  const body = encodeURIComponent(
+    `Name: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone || '—'}\n\n${data.message}`
+  )
+  window.location.href = `mailto:ing.ssti@gmail.com?subject=${subject}&body=${body}`
+  return { success: true }
 }

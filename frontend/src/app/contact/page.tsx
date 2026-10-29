@@ -16,23 +16,18 @@ export default function ContactPage() {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  async function handleSubmit(e: React.FormEvent) {
+    async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setStatus('loading')
     try {
-      const res = await fetch('https://api.ssti.space/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(form),
-      })
-      if (!res.ok) throw new Error()
+      const { sendContact } = await import('@/lib/api')
+      await sendContact(form)
       setStatus('success')
       setForm({ name: '', email: '', phone: '', subject: '', message: '' })
     } catch {
       setStatus('error')
     }
   }
-
   const gmailUrl = `https://mail.google.com/mail/?view=cm&to=${SITE.email}&su=${encodeURIComponent(lang === 'FR' ? 'Demande depuis le site' : 'Enquiry from website')}`
 
   const inputStyle: React.CSSProperties = {

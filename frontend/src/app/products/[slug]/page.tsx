@@ -17,15 +17,16 @@ export default function ProductDetailPage() {
   const [loading, setLoading] = useState(true)
   const [activeImage, setActiveImage] = useState(0)
 
-  useEffect(() => {
+   useEffect(() => {
     if (!slug) return
-    fetch(`https://api.ssti.space/api/products/${slug}`)
-      .then(r => r.json())
-      .then(r => { setProduct(r.product); setRelated(r.related ?? []) })
-      .catch(() => {})
-      .finally(() => setLoading(false))
+    import('@/lib/data').then(m => {
+      const r = m.getProductBySlug(slug as string)
+      setProduct(r.product)
+      setRelated(r.related)
+      setLoading(false)
+    })
   }, [slug])
-
+  
   if (loading) return <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><p style={{ fontFamily: 'DM Mono,monospace', fontSize: '12px', color: '#9CA3AF' }}>Loading...</p></div>
   if (!product) return <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><p style={{ fontFamily: 'Barlow Condensed,sans-serif', fontSize: '24px', color: '#1C2B3A' }}>Product not found</p></div>
 

@@ -23,16 +23,18 @@ function ProductsContent() {
     fetch('https://api.ssti.space/api/categories').then(r => r.json()).then(setCategories).catch(() => {})
   }, [])
 
+    useEffect(() => {
+    import('@/lib/data').then(m => setCategories(m.categories))
+  }, [])
+
   useEffect(() => {
     setLoading(true)
-    const params = new URLSearchParams()
-    if (categoryId) params.set('category_id', categoryId)
-    if (search) params.set('search', search)
-    fetch(`https://api.ssti.space/api/products?${params}`)
-      .then(r => r.json())
-      .then(r => { setProducts(r.data ?? []); setTotal(r.total ?? 0) })
-      .catch(() => {})
-      .finally(() => setLoading(false))
+    import('@/lib/data').then(m => {
+      const r = m.getProductsByCategory(categoryId, search)
+      setProducts(r.data)
+      setTotal(r.total)
+      setLoading(false)
+    })
   }, [categoryId, search])
 
   const activeCategory = categories.find((c: any) => String(c.id) === String(categoryId))

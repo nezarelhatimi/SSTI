@@ -17,16 +17,12 @@ export default function HomePage() {
   const [paused, setPaused] = useState(false)
   const intervalRef = useRef<any>(null)
 
-  useEffect(() => {
-    fetch('https://api.ssti.space/api/categories').then(r => r.json()).then(setCategories).catch(() => {})
-    
+    useEffect(() => {
+    import('@/lib/data').then(m => setCategories(m.categories))
   }, [])
 
   useEffect(() => {
-    fetch('https://api.ssti.space/api/products?per_page=100')
-      .then(r => r.json())
-      .then(data => setSlides(data.data ?? []))
-      .catch(() => {})
+    import('@/lib/data').then(m => setSlides(m.products))
   }, [])
 
   useEffect(() => {
